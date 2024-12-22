@@ -38,7 +38,6 @@ public class CardRequestTest {
 
     @Test
     public void shouldSuccessfullySendRequest() {
-        preTest();
         var randomUser = DataGenerator.Registration.getUser();
 
         $("[data-test-id='city'] input").setValue(randomUser.getCity());
