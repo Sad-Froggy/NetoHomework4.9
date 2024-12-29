@@ -65,25 +65,18 @@ public class CardRequestTest {
     }
 
     @Test
-    public void shouldFailSendRequest() throws InterruptedException {
+    public void shouldFailSendRequest() {
         preTest();
         var randomUser = DataGenerator.Registration.getUser();
 
         $("[data-test-id='city'] input").setValue(randomUser.getCity());
-        Thread.sleep(2000);
         String inputDate = DataGenerator.getMinDate(PLUS_DAYS);
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE);
-        Thread.sleep(2000);
         $("[data-test-id='date'] input").setValue(inputDate);
-        Thread.sleep(2000);
         $("[data-test-id='name'] input").setValue(randomUser.getName());
-        Thread.sleep(2000);
         $("[data-test-id='phone'] input").setValue(DataGenerator.getWrongPhoneNum());
-        Thread.sleep(2000);
         $("[data-test-id='agreement']").click();
-        Thread.sleep(2000);
         $("button.button").click();
-        Thread.sleep(5000);
         $("[data-test-id='phone'] .input__sub")
                 .shouldHave(Condition.text("Неверный формат номера мобильного телефона"))
                 .shouldBe(visible);
